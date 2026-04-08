@@ -8,6 +8,7 @@ type Props = {
 
 export const PersonLink = ({ person }: Props) => {
   const { personSlug } = useParams();
+
   return (
     <tr
       data-cy="person"

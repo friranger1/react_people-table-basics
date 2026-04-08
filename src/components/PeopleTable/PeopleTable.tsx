@@ -4,10 +4,10 @@ import { Person } from '../../types';
 import { PersonLink } from '../PersonLink/PersonLink';
 
 type Props = {
-  Persons: Person[];
+  persons: Person[];
 };
 
-export const PeopleTable = ({ Persons }: Props) => {
+export const PeopleTable = ({ persons }: Props) => {
   return (
     <>
       <table
@@ -26,8 +26,8 @@ export const PeopleTable = ({ Persons }: Props) => {
         </thead>
 
         <tbody>
-          {Persons.map(person => {
-            return <PersonLink person={person} />;
+          {persons.map(person => {
+            return <PersonLink key={person.slug} person={person} />;
           })}
         </tbody>
       </table>

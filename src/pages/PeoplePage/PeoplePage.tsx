@@ -27,6 +27,7 @@ export const PeoplePage = () => {
         setIsLoading(false);
       });
   }, []);
+
   return (
     <>
       <main className="section">
@@ -37,27 +38,20 @@ export const PeoplePage = () => {
 
       <div className="block">
         <div className="box table-container">
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              {isError ? (
-                <p data-cy="peopleLoadingError" className="has-text-danger">
-                  Something went wrong
-                </p>
-              ) : (
-                ''
-              )}
-              {persons.length === 0 ? (
-                <p data-cy="noPeopleMessage">
-                  There are no people on the server
-                </p>
-              ) : (
-                ''
-              )}
+          {isLoading && <Loader />}
 
-              <PeopleTable Persons={persons} />
-            </>
+          {!isLoading && isError && (
+            <p data-cy="peopleLoadingError" className="has-text-danger">
+              Something went wrong
+            </p>
+          )}
+
+          {!isLoading && !isError && persons.length === 0 && (
+            <p data-cy="noPeopleMessage">There are no people on the server</p>
+          )}
+
+          {!isLoading && !isError && persons.length > 0 && (
+            <PeopleTable persons={persons} />
           )}
         </div>
       </div>
